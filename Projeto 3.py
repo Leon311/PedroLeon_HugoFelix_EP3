@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-limentos = open ("alimentos.csv", "r")
+alimentos = open ("alimentos.csv", "r")
 usuario = open ("usuario.csv", "r")
 
 def harris_benedict(sexo, peso, altura, idade):
@@ -29,12 +29,44 @@ def caloria(tmb,fator):
 def imc(a,peso):
     imc=peso/a*a
     return imc
+    
+
+lista=list()
+for i in alimentos: 
+    lista2=(i.strip())
+    lista.append(lista2.split(","))
+    
+    
+    
+print(lista)    
+    
+
+
+dicionariocomida=dict()
+for i in range(len(lista)):
+    for j in range(len(lista[i])):
+        if j==0:
+            dicionariocomida[lista[i][j]]=list()
+        else:
+            dicionariocomida[lista[i][0]].append(lista[i][j])
+print(dicionariocomida)
+        
 
 
 
+lista=list()
+for i in usuario: 
+    lista2=(i.strip())
+    lista.append(lista2.split(","))
+    
 
-
-
-
-
+dicionariousuario=dict()
+for i in range(len(lista)):
+    for j in range(len(lista[i])):
+        if j==0:
+            dicionariousuario[lista[i][j]]=list()
+        else:
+            dicionariousuario[lista[i][0]].append(lista[i][j])
+print(dicionariousuario)
+        
      
