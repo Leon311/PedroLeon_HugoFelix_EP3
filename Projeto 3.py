@@ -49,32 +49,30 @@ for i in range(len(lista)):
             dicionariocomida[lista[i][j]]=list()
         else:
             dicionariocomida[lista[i][0]].append(lista[i][j])
-print(dicionariocomida)
+#print(dicionariocomida)
         
 
+"""       
+if j==0:
+    dicionariousuario[lista[i][j]]=list()
+else:
+    dicionariousuario[lista[i][0]].append(lista[i][j])
+"""            
 
 lista=list()
 for i in usuario: 
     lista2=(i.strip())
     lista.append(lista2.split(","))
-#print(lista)
+print(lista)
     
 dicionariousuario=dict()
 for i in range(len(lista)):
     for j in range(len(lista[i])):
         if lista[i][j] in dicionariousuario:
-            
-'''        
-if j==0:
-    dicionariousuario[lista[i][j]]=list()
-else:
-    dicionariousuario[lista[i][0]].append(lista[i][j])"""
-'''            
+            print(dicionariousuario)
 
 
 
-
-print(dicionariousuario)
 datas = []
 alimentos = []
 for key, values in dicionariousuario.items():
@@ -82,10 +80,33 @@ for key, values in dicionariousuario.items():
     datas.append(a)
     b = values
     alimentos.append(b)
-#print (datas)
-#print (alimentos)
-    
+print (a)
+print (b)
+
+listacaloria=list()
+listaproteina=list()
+listacarboidrato=list()
+listagordura=list()
+#j é os alimenots e j+1 é as qtd 
+#j é a posiçaõ da lista do dicionário i
+#i é uma chave, alimento
+
+#aqui quanto de caloria prot etc por dia
+for i in dicionariousuario.keys():
+    lista4bagos=[0]*4 #1=caloria 2=proteina 3=carboidrato 4=Gordura
+           
+    if i [2]=="/":
+        for j in range(0,len(dicionariousuario[i]),2):
+            proporcao=float(dicionariousuario[i][j+1])/float(dicionariocomida[dicionariousuario[i][j]][0])
+            lista4bagos[0]+=float(dicionariocomida[dicionariousuario[i][j]][1])*proporcao #dic usuario pega alimento dentro do dic comida  
+            lista4bagos[1]+=float(dicionariocomida[dicionariousuario[i][j]][2])*proporcao
+            lista4bagos[2]+=float(dicionariocomida[dicionariousuario[i][j]][3])*proporcao
+            lista4bagos[3]+=float(dicionariocomida[dicionariousuario[i][j]][4])*proporcao
+        listacaloria.append(lista4bagos[0])
+        listaproteina.append(lista4bagos[1])
+        listacarboidrato.append(lista4bagos[2])
+        listagordura.append(lista4bagos[3])    
+            
 
 
-
-    
+          
