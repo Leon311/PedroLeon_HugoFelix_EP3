@@ -38,7 +38,7 @@ for i in alimentos:
     
     
     
-print(lista)    
+#print(lista)    
     
 
 
@@ -53,20 +53,39 @@ print(dicionariocomida)
         
 
 
-
 lista=list()
 for i in usuario: 
     lista2=(i.strip())
     lista.append(lista2.split(","))
+#print(lista)
     
-
 dicionariousuario=dict()
 for i in range(len(lista)):
     for j in range(len(lista[i])):
-        if j==0:
-            dicionariousuario[lista[i][j]]=list()
-        else:
-            dicionariousuario[lista[i][0]].append(lista[i][j])
+        if lista[i][j] in dicionariousuario:
+            
+'''        
+if j==0:
+    dicionariousuario[lista[i][j]]=list()
+else:
+    dicionariousuario[lista[i][0]].append(lista[i][j])"""
+'''            
+
+
+
+
 print(dicionariousuario)
-        
-     
+datas = []
+alimentos = []
+for key, values in dicionariousuario.items():
+    a = key
+    datas.append(a)
+    b = values
+    alimentos.append(b)
+#print (datas)
+#print (alimentos)
+    
+
+
+
+    
