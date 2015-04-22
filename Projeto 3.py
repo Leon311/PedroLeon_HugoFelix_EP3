@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
 alimentos = open ("alimentos.csv", "r")
-usuario = open ("usuario.csv", "r")
+usuario = open ("usuario1.csv", "r")
 
 def harris_benedict(sexo, peso, altura, idade):
-    if sexo =="h" or sexo =="H":
-        tmb=0    
-        tmb=66+(13.7+peso(kg))+(5*a(cm))-(6.8*idade) 
-    elif sexo=="m" or sexo=="M":
-        tmb=655+(9.6*peso(kg))+(1.8*a(cm))-(4.7*idade)
+    if sexo =="m" or sexo =="M":
+        tmb=66+(13.7*float(peso))+(5*float(altura)*100)-(6.8*float(idade)) #peso en kg, altura em cm.
+    elif sexo=="f" or sexo=="F":
+        tmb=655+(9.6*float(peso))+(1.8*float(altura)*100)-(4.7*float(idade))
     
     return tmb
     
@@ -24,57 +23,118 @@ def caloria(tmb,fator):
         caloria_dia=tmb*1.725
     if fator=="muito alto":
         caloria_dia=tmb*1.9
-    return caloria
+    return caloria_dia
     
-def imc(a,peso):
-    imc=peso/a*a
+def imc(altura,peso):
+    imc=int(peso)/float(altura)*float(altura)
     return imc
     
+print("\nlimpa espaços da lista de alimentos\n")
 
 lista=list()
 for i in alimentos: 
     lista2=(i.strip())
     lista.append(lista2.split(","))
-    
-    
-    
-#print(lista)    
+print(lista)    
     
 
-
+print("\nMonta dicionário de alimentos\n")
 dicionariocomida=dict()
+
 for i in range(len(lista)):
-    for j in range(len(lista[i])):
+    for j in range(len(lista[i])):       
         if j==0:
             dicionariocomida[lista[i][j]]=list()
         else:
             dicionariocomida[lista[i][0]].append(lista[i][j])
-#print(dicionariocomida)
+print(dicionariocomida)
         
 
-"""       
-if j==0:
-    dicionariousuario[lista[i][j]]=list()
-else:
-    dicionariousuario[lista[i][0]].append(lista[i][j])
-"""            
-
-lista=list()
+print("\nlimpa espaços da lista de usuários\n")
+listau=list()
 for i in usuario: 
     lista2=(i.strip())
-    lista.append(lista2.split(","))
-print(lista)
-    
+    listau.append(lista2.split(","))
+print(listau)
+
+print("\nOrdena lista de usuário por data\n")
+
+fim=len(listau)
+while fim>4:
+    trocou=False
+    x=3
+    while x<(fim-1):
+        
+        if listau[x][0] > listau[x+1][0]:
+            trocou=True
+            print(trocou)
+            temp=listau[x]
+            listau[x]=listau[x+1]
+            listau[x+1]=temp
+        x+=1
+        if not trocou:
+            break
+    fim-=1
+for e in listau:
+    print (e)
+"""    
+print("\nMonta dicionário de usuários\n")   
 dicionariousuario=dict()
-for i in range(len(lista)):
-    for j in range(len(lista[i])):
-        if lista[i][j] in dicionariousuario:
-            print(dicionariousuario)
+for i in range(1,len(listau)):
+    for j in range(len(listau[i])):
+        if j==0:
+            dicionariousuario[listau[i][j]]=list()
+        else:
+            dicionariousuario[listau[i][0]].append(listau[i][j])     
+print(dicionariousuario)
+"""
+print("\nCálculo da quantidade diária recomendada de calorías\n")
 
 
+calorias6=0
+calorias7=0
 
+SEXO=listau[1][3]
+PESO=listau[1][2]
+ALTURA=listau[1][4]
+IDADE=listau[1][1]
+FATOR=listau[1][5]
+
+print(listau[0])
+print("Fulano da Silva:", IDADE,PESO,SEXO,ALTURA,FATOR)
+TMB=harris_benedict(SEXO,PESO,ALTURA,IDADE)
+print("tmb: %4.2f" % TMB)
+caloriadia=caloria(TMB,FATOR)
+print ("Caloria recomendada por dia: %4.2f" % caloriadia)
+IMC=imc(ALTURA,PESO)
+print("IMC: %4.2f\n"% IMC)
+
+print("\nCálculo da qtd diária de calorías consumida por Fulano da Silva\n")
+
+dia6=[3,4,5,6]
+dia7=[7,8,9,10]
+
+for x in dia6:
+    if listau[x][1] in dicionariocomida:
+        quant, cal, prot, carb, gord=dicionariocomida[listau[x][1]]
+        calorias6+=float((listau[x][2])) * float(cal)/int(quant)
+        
+    else:
+        print("Alimento não encontrado no dicionario")
+for x in dia7:
+    if listau[x][1] in dicionariocomida:
+        quant, cal, prot, carb, gord=dicionariocomida[listau[x][1]]
+        calorias7+=float((listau[x][2])) * float(cal)/float(quant)
+        
+    else:
+        print("Alimento não encontrado no dicionario")
+print("Quantidade de calorias do dia 06/04/15:", calorias6)        
+print("Quantidade de calorias do dia 07/04/15:", calorias7)   
+print("\n\n")
+     
 datas = []
 alimentos = []
+dicionariousuario=dict()
 for key, values in dicionariousuario.items():
     a = key
     datas.append(a)
@@ -88,7 +148,7 @@ listaproteina=list()
 listacarboidrato=list()
 listagordura=list()
 #j é os alimenots e j+1 é as qtd 
-#j é a posiçaõ da lista do dicionário i
+#j é a posição da lista do dicionário i
 #i é uma chave, alimento
 
 #aqui quanto de caloria prot etc por dia
