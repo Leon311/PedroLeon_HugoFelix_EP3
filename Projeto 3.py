@@ -171,12 +171,12 @@ for i in dicionariousuario.keys():
 pedro = list()
 pedro.append(calorias6)
 pedro.append(calorias7)
-T = [1,2]
+T = [0,2]
 
 
 plt.plot(T,pedro)
 plt.ylabel('Calorias')
-plt.xlabel('Dias')
-plt.title("Calorias diarias")
+plt.xlabel('Tempo(dias)')
+plt.title("Calorias consumidas no tempo (T)")
 plt.show()
 
