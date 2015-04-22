@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import matplotlib.pyplot as plt 
+
 alimentos = open ("alimentos.csv", "r")
 usuario = open ("usuario1.csv", "r")
 
@@ -109,7 +111,7 @@ print ("Caloria recomendada por dia: %4.2f" % caloriadia)
 IMC=imc(ALTURA,PESO)
 print("IMC: %4.2f\n"% IMC)
 
-print("\nCálculo da qtd diária de calorías consumida por Fulano da Silva\n")
+print("\nCálculo da quantidade diária de calorías consumida por Fulano da Silva\n")
 
 dia6=[3,4,5,6]
 dia7=[7,8,9,10]
@@ -131,18 +133,18 @@ for x in dia7:
 print("Quantidade de calorias do dia 06/04/15:", calorias6)        
 print("Quantidade de calorias do dia 07/04/15:", calorias7)   
 print("\n\n")
-     
+    
 datas = []
 alimentos = []
 dicionariousuario=dict()
-for key, values in dicionariousuario.items():
+"""for key, values in dicionariousuario.items():
     a = key
     datas.append(a)
     b = values
     alimentos.append(b)
 print (a)
 print (b)
-
+"""
 listacaloria=list()
 listaproteina=list()
 listacarboidrato=list()
@@ -166,7 +168,15 @@ for i in dicionariousuario.keys():
         listaproteina.append(lista4bagos[1])
         listacarboidrato.append(lista4bagos[2])
         listagordura.append(lista4bagos[3])    
-            
+pedro = list()
+pedro.append(calorias6)
+pedro.append(calorias7)
+T = [1,2]
 
 
-          
+plt.plot(T,pedro)
+plt.ylabel('Calorias')
+plt.xlabel('Dias')
+plt.title("Calorias diarias")
+plt.show()
+
