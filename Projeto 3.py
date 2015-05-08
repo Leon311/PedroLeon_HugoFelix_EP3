@@ -175,6 +175,7 @@ T = [0,2]
 
 
 plt.plot(T,pedro)
+plt.axis([1,2,400,1100])
 plt.ylabel('Calorias')
 plt.xlabel('Tempo(dias)')
 plt.title("Calorias consumidas no tempo (T)")
